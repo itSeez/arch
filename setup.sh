@@ -65,4 +65,4 @@ sudo ufw enable
 echo "cleaning up temporary files"
 rm $home_dir/tmp/pkgs.csv $home_dir/tmp/pypkgs.txt $home_dir/tmp/subl.gpg
 
-echo "\ninstallation complete"
+echo -e "\ninstallation complete"
