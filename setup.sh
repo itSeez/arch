@@ -12,7 +12,7 @@ sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stabl
 chset()
 {
     # change the setting in file $3 from value $1 to value $2
-    sed -i "s/^$1/$2/" $3
+    sudo sed -i "s/^$1/$2/" $3
 }
 
 # installation script
@@ -24,15 +24,15 @@ mkdir $HOME/pkg # packages not installed by pacman
 mkdir $HOME/tmp # temporary files
 
 echo "applying system settings"
-sudo chset "#Color" "Color" /etc/pacman.conf
-sudo chset "#HandleSuspendKey=suspend" "HandleSuspendKey=ignore" /etc/systemd/logind.conf
-sudo chset "#HandleHibernateKey=hibernate" "HandleHibernateKey=ignore" /etc/systemd/logind.conf
-sudo chset "#HandleLidSwitch=suspend" "HandleLidSwitch=ignore" /etc/systemd/logind.conf
-sudo chset "#HandleLidSwitchExternalPower=suspend" "HandleLidSwitchExternalPower=ignore" /etc/systemd/logind.conf
-sudo chset "#AllowSuspend=yes" "AllowSuspend=no" /etc/systemd/sleep.conf
-sudo chset "#AllowHibernation=yes" "AllowHibernation=no" /etc/systemd/sleep.conf
-sudo chset "#AllowSuspendThenHibernate=yes" "AllowSuspendThenHibernate=no" /etc/systemd/sleep.conf
-sudo chset "#AllowHybridSleep=yes" "AllowHybridSleep=no" /etc/systemd/sleep.conf
+chset "#Color" "Color" /etc/pacman.conf
+chset "#HandleSuspendKey=suspend" "HandleSuspendKey=ignore" /etc/systemd/logind.conf
+chset "#HandleHibernateKey=hibernate" "HandleHibernateKey=ignore" /etc/systemd/logind.conf
+chset "#HandleLidSwitch=suspend" "HandleLidSwitch=ignore" /etc/systemd/logind.conf
+chset "#HandleLidSwitchExternalPower=suspend" "HandleLidSwitchExternalPower=ignore" /etc/systemd/logind.conf
+chset "#AllowSuspend=yes" "AllowSuspend=no" /etc/systemd/sleep.conf
+chset "#AllowHibernation=yes" "AllowHibernation=no" /etc/systemd/sleep.conf
+chset "#AllowSuspendThenHibernate=yes" "AllowSuspendThenHibernate=no" /etc/systemd/sleep.conf
+chset "#AllowHybridSleep=yes" "AllowHybridSleep=no" /etc/systemd/sleep.conf
 
 echo "refreshing arch keyring"
 sudo pacman -Syy --noconfirm archlinux-keyring >/dev/null 2>&1
