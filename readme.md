@@ -15,10 +15,9 @@ This is meant to be run on a fresh Arch environment. Here are some of the things
 - [Sublime Text][subl]
 - [Firefox][firefox]
 
-<!-- links -->
 [arch]:https://www.archlinux.org/
 [archinstall]:./install.md
-[archsetup]:./setup.md
+[archsetup]:./setup.sh
 [sway]:https://swaywm.org/
 [omz]:https://ohmyz.sh/
 [cpp]:https://en.wikipedia.org/wiki/C%2B%2B
