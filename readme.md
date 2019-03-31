@@ -1,6 +1,6 @@
-# Arch Installation
+## Arch Installation and Setup
 
-This is a repository for notes and scripts that help with an installation of [Arch Linux][arch].
+This repository contains notes and scripts that help with an installation of [Arch Linux][arch].
 
 - [Arch installation][archinstall]
 - [Arch setup][archsetup]
@@ -8,12 +8,13 @@ This is a repository for notes and scripts that help with an installation of [Ar
 This is meant to be run on a fresh Arch environment. Here are some of the things included in this setup:
 
 - [Sway][sway]
-- my dotfiles
 - [oh-my-zsh][omz]
 - [C++ environment][cpp]
 - [Python environment][python]
 - [Sublime Text][subl]
 - [Firefox][firefox]
+
+_**Note**_: This setup is specific to a [Dell XPS 9380][dell] or equivalent.
 
 [arch]:https://www.archlinux.org/
 [archinstall]:./install.md
@@ -24,3 +25,4 @@ This is meant to be run on a fresh Arch environment. Here are some of the things
 [python]:https://www.python.org/
 [subl]:https://www.sublimetext.com/
 [firefox]:https://www.mozilla.org/en-US/firefox/new/
+[dell]:https://wiki.archlinux.org/index.php/Dell_XPS_13_(9370)
