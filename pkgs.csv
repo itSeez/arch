@@ -19,6 +19,8 @@ htop,                   system usage information
 unrar,                  extracts rar files
 unzip,                  extracts zip files
 noto-fonts,             fonts
+arc-solid-gtk-theme,    dark GTK theme
+papirus-icon-theme,     icons
 xorg-server-xwayland,   Wayland compatibility layer for X applications
 sway,                   window manager
 waybar,                 status bar
@@ -26,11 +28,9 @@ swaylock,               lock screen
 swayidle,               idle management daemon for Wayland
 dmenu,                  finds and launches applications
 rxvt-unicode,           terminal emulator
-nnn,                    terminal manager
-network-manager-applet, applet for managing network connections
+nnn,                    terminal file manager
 wl-clipboard,           clipboard utility
 grim,                   screenshot utility
-arc-solid-gtk-theme,    dark GTK theme
-papirus-icon-theme,     icons
+network-manager-applet, applet for managing network connections
 imv,                    image viewer
 firefox,                web browser
