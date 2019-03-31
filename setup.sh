@@ -52,9 +52,10 @@ sudo python -m pip install --upgrade pip setuptools >/dev/null 2>&1
 sudo python -m pip install -r $home_dir/tmp/pypkgs.txt >/dev/null 2>&1
 
 echo "installing sublime text"
-curl -Os "$sublkey" > $home_dir/tmp/sublimehq-pub.gpg
-sudo pacman-key --add $home_dir/tmp/sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A
-sudo echo -e "$sublrepo" >> /etc/pacman.conf
+curl -s "$sublkey" > $home_dir/tmp/subl.gpg
+sudo pacman-key --add $home_dir/tmp/subl.gpg >/dev/null 2>&1
+sudo pacman-key --lsign-key 8A8F901A >/dev/null 2>&1
+echo -e "$sublrepo" | sudo tee -a /etc/pacman.conf
 sudo pacman -Syy --noconfirm sublime-text >/dev/null 2>&1
 
 echo "enabling services"
@@ -62,6 +63,6 @@ sudo systemctl enable ufw.service
 sudo ufw enable
 
 echo "cleaning up temporary files"
-rm $home_dir/tmp/pkgs.csv $home_dir/tmp/pypkgs.txt $home_dir/tmp/sublimehq-pub.gpg
+rm $home_dir/tmp/pkgs.csv $home_dir/tmp/pypkgs.txt $home_dir/tmp/subl.gpg
 
 echo "\ninstallation complete"
