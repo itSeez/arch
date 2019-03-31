@@ -3,8 +3,8 @@
 set -e
 
 # variables
-pkgsfile="https://pkgs.csv"
-pypkgsfile="https://pypkgs.txt"
+pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.csv"
+pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
 sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
 sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
 
