@@ -38,7 +38,7 @@
 
 - `nano /etc/pacman.d/mirrorlist`
 - `pacstrap /mnt base base-devel`
-- `genfstab -U /mnt >> /mnt/etc/fstab`
+- `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 
 ##### Configure Locale
@@ -72,7 +72,7 @@ editor       no
 console-mode max
 ```
 
-- `blkid >> /boot/loader/entries/arch.conf`
+- `blkid | grep "/dev/sda2" > /boot/loader/entries/arch.conf`
 - `nano /boot/loader/entries/arch.conf`
 
 ```
@@ -101,5 +101,6 @@ options root=PARTUUID=xxxx rw
 - `sudo timedatectl set-ntp true`
 - `sudo pacman -S openssh zsh git gnome-keyring`
 - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-- `ssh-keygen -t rsa -b 4096 -C "user@email.com"`
-- `sudo ./setup.sh`
+- `curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh > setup.sh`
+- `chmod +x setup.sh`
+- `./setup.sh`
