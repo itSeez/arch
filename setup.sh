@@ -57,6 +57,8 @@ pacman -Syy --noconfirm sublime-text >/dev/null 2>&1
 echo "enabling services"
 systemctl enable ufw.service
 ufw enable
-timedatectl set-ntp true
+
+echo "cleaning up temporary files"
+rm $HOME/tmp/pkgs.csv $HOME/tmp/pypkgs.txt $HOME/tmp/sublimehq-pub.gpg
 
 echo "\ninstallation complete"

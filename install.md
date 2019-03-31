@@ -98,6 +98,7 @@ options root=PARTUUID=xxxx rw
 
 ##### System
 
+- `sudo timedatectl set-ntp true`
 - `sudo pacman -S openssh zsh git gnome-keyring`
 - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - `ssh-keygen -t rsa -b 4096 -C "user@email.com"`
