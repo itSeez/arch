@@ -3,10 +3,10 @@
 set -e
 
 # variables
-local pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.csv"
-local pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
-local sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
-local sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
+pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.csv"
+pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
+sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
+sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
 
 # functions
 chset()
