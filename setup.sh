@@ -44,12 +44,12 @@ while IFS=, read -r pkg comment; do
 done < $HOME/tmp/pkgs.csv
 
 echo "installing python packages"
-curl -s "$pypkgsfile" >> $HOME/tmp/pypkgs.txt
+curl -s "$pypkgsfile" > $HOME/tmp/pypkgs.txt
 python -m pip install --upgrade pip setuptools >/dev/null 2>&1
 python -m pip install -r $HOME/tmp/pypkgs.txt >/dev/null 2>&1
 
 echo "installing sublime text"
-curl -Os $sublkey >> $HOME/tmp/sublimehq-pub.gpg
+curl -Os $sublkey > $HOME/tmp/sublimehq-pub.gpg
 pacman-key --add $HOME/tmp/sublimehq-pub.gpg && pacman-key --lsign-key 8A8F901A
 echo -e "$sublrepo" >> /etc/pacman.conf
 pacman -Syy --noconfirm sublime-text >/dev/null 2>&1
