@@ -7,6 +7,7 @@ pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.csv"
 pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
 sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
 sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
+home_dir=/home/itseez
 
 # functions
 chset()
@@ -17,11 +18,11 @@ chset()
 
 # installation script
 echo "creating user directories"
-mkdir $HOME/bin # user binaries that should be in the path
-mkdir $HOME/src # source that is tracked by git
-mkdir $HOME/wrk # source that is not tracked by git
-mkdir $HOME/pkg # packages not installed by pacman
-mkdir $HOME/tmp # temporary files
+mkdir $home_dir/bin # user binaries that should be in the path
+mkdir $home_dir/src # source that is tracked by git
+mkdir $home_dir/wrk # source that is not tracked by git
+mkdir $home_dir/pkg # packages not installed by pacman
+mkdir $home_dir/tmp # temporary files
 
 echo "applying system settings"
 chset "#Color" "Color" /etc/pacman.conf
@@ -38,20 +39,21 @@ echo "refreshing arch keyring"
 sudo pacman -Syy --noconfirm archlinux-keyring >/dev/null 2>&1
 
 echo "installing packages"
-curl -s "$pkgsfile" | sed '/^package/d' > $HOME/tmp/pkgs.csv
+curl -s "$pkgsfile" | sed '/^package/d' > $home_dir/tmp/pkgs.csv
 while IFS=, read -r pkg comment; do
     echo -n "$pkg "
     sudo pacman -S --noconfirm --needed "$pkg" >/dev/null 2>&1
-done < $HOME/tmp/pkgs.csv
+done < $home_dir/tmp/pkgs.csv
+echo ""
 
 echo "installing python packages"
-curl -s "$pypkgsfile" > $HOME/tmp/pypkgs.txt
+curl -s "$pypkgsfile" > $home_dir/tmp/pypkgs.txt
 sudo python -m pip install --upgrade pip setuptools >/dev/null 2>&1
-sudo python -m pip install -r $HOME/tmp/pypkgs.txt >/dev/null 2>&1
+sudo python -m pip install -r $home_dir/tmp/pypkgs.txt >/dev/null 2>&1
 
 echo "installing sublime text"
-curl -Os $sublkey > $HOME/tmp/sublimehq-pub.gpg
-sudo pacman-key --add $HOME/tmp/sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A
+curl -Os $sublkey > $home_dir/tmp/sublimehq-pub.gpg
+sudo pacman-key --add $home_dir/tmp/sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A
 sudo echo -e "$sublrepo" >> /etc/pacman.conf
 sudo pacman -Syy --noconfirm sublime-text >/dev/null 2>&1
 
@@ -60,6 +62,6 @@ sudo systemctl enable ufw.service
 sudo ufw enable
 
 echo "cleaning up temporary files"
-rm $HOME/tmp/pkgs.csv $HOME/tmp/pypkgs.txt $HOME/tmp/sublimehq-pub.gpg
+rm $home_dir/tmp/pkgs.csv $home_dir/tmp/pypkgs.txt $home_dir/tmp/sublimehq-pub.gpg
 
 echo "\ninstallation complete"
