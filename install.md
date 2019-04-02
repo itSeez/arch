@@ -6,7 +6,6 @@
 
 ##### Setup Partitions
 
-- `fdisk -l`
 - Create partitions: `fdisk /dev/sda`
 
 |efi    |root   |home   |swap   |
@@ -16,8 +15,9 @@
 |`1`    |`enter`|`enter`|`enter`|
 |`enter`|`+96G` |`+135G`|`enter`|
 |`+1G`  |-      |-      |`t`    |
-|`t`    |-      |-      |`19`   |
-|`1`    |-      |-      |`w`    |
+|`t`    |-      |-      |`4`    |
+|`1`    |-      |-      |`19`   |
+|-      |-      |-      |`w`    |
 
 ##### Format Partitions
 
@@ -37,7 +37,7 @@
 ##### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base base-devel`
+- `pacstrap /mnt base-devel intel-ucode dialog networkmanager zsh git`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 
@@ -46,6 +46,7 @@
 - `passwd`
 - `ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime`
 - `hwclock --systohc`
+- `systemctl enable NetworkManager`
 - `nano /etc/locale.gen` (uncomment en_CA.UTF-8)
 - `locale-gen`
 - `nano /etc/locale.conf` and set `LANG=en_CA.UTF-8`
@@ -60,8 +61,6 @@
 
 ##### Setup the Boot Loader
 
-- `pacman -S dialog networkmanager intel-ucode`
-- `systemctl enable NetworkManager`
 - `bootctl install`
 - `nano /boot/loader/loader.conf`
 
@@ -85,7 +84,7 @@ options root=PARTUUID=xxxx rw
 
 - `exit`
 - `umount -R /mnt`
-- `reboot`
+- `shutdown now`
 
 ### Arch Setup
 
@@ -99,7 +98,6 @@ options root=PARTUUID=xxxx rw
 ##### System
 
 - `sudo timedatectl set-ntp true`
-- `sudo pacman -S openssh zsh git gnome-keyring`
 - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - `curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh > setup.sh`
 - `chmod +x setup.sh`

@@ -2,6 +2,7 @@
 ,vulkan-intel,           Intel's Vulkan mesa driver
 ,python,                 Python interpreter
 ,python-pip,             package manager for Python
+,openssh,                tool for remote login via SSH
 ,ufw,                    firewall
 ,clang,                  C compiler
 ,cmake,                  build system
