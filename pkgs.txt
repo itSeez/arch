@@ -20,7 +20,6 @@ unrar
 unzip
 wget
 cups
-sane
 hplip
 noto-fonts
 arc-solid-gtk-theme
