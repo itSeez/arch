@@ -102,3 +102,10 @@ options root=PARTUUID=xxxx rw
 - `curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh > setup.sh`
 - `chmod +x setup.sh`
 - `./setup.sh`
+
+##### Printer/Scanner
+
+- `sudo hp-setup -i 192.168.86.36`
+- `lpoptions -d home_printer`
+- `scanimage --device "<uri>" --format=png --resolution 300 --mode=color > scan_01.png`
+- `lpr scan_01.png`

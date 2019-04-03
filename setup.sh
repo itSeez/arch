@@ -51,15 +51,10 @@ sudo pip install -r $home_dir/tmp/pypkgs.txt >/dev/null || exit
 echo "enabling services"
 sudo systemctl enable ufw.service
 sudo ufw enable
-sudo usermod -a -G cups itseez
 sudo systemctl enable org.cups.cupsd.socket
 sudo systemctl start org.cups.cupsd.socket
 
 echo "cleaning up temporary files"
 rm $home_dir/tmp/pkgs.txt $home_dir/tmp/pypkgs.txt $home_dir/tmp/subl.gpg
-
-printf "\n%s\n" "to configure the printer:"
-printf "%s\n" "sudo hp-setup -i 192.168.86.36"
-printf "%s\n" "lpoptions -d <printer_name>"
 
 printf "\n%s\n" "installation complete"
