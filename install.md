@@ -37,7 +37,7 @@
 ##### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base-devel intel-ucode dialog networkmanager zsh git`
+- `pacstrap /mnt base base-devel intel-ucode dialog networkmanager zsh git`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 
@@ -71,7 +71,7 @@ editor       no
 console-mode max
 ```
 
-- `blkid | grep "/dev/sda2" > /boot/loader/entries/arch.conf`
+- `blkid | grep /dev/sda2 > /boot/loader/entries/arch.conf`
 - `nano /boot/loader/entries/arch.conf`
 
 ```

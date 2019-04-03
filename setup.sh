@@ -1,13 +1,12 @@
 #!/bin/zsh
 # variables
-pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.csv"
+pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.txt"
+pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
 sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
 sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
 home_dir=/home/itseez
 
 # functions
-error() { printf "\nerror %s\n" "$1"; exit; }
-
 # change the setting in file $3 from value $1 to value $2
 chset() { sudo sed -i "s/^$1/$2/" $3 }
 
@@ -31,30 +30,36 @@ chset "#AllowSuspendThenHibernate=yes" "AllowSuspendThenHibernate=no" /etc/syste
 chset "#AllowHybridSleep=yes" "AllowHybridSleep=no" /etc/systemd/sleep.conf
 
 # add sublime text to pacman
-curl -s "$sublkey" > $home_dir/tmp/subl.gpg
-sudo pacman-key --add $home_dir/tmp/subl.gpg > /dev/null || error "adding sublime-text"
-sudo pacman-key --lsign-key 8A8F901A > /dev/null || error "adding sublime-text"
+curl -s "$sublkey" > $home_dir/tmp/subl.gpg || exit
+sudo pacman-key --add $home_dir/tmp/subl.gpg > /dev/null || exit
+sudo pacman-key --lsign-key 8A8F901A > /dev/null || exit
 echo -e "$sublrepo" | sudo tee -a /etc/pacman.conf
 
 echo "refreshing arch keyring"
-sudo pacman -Syy --noconfirm archlinux-keyring > /dev/null || error "refreshing arch keyring"
+sudo pacman -Syy --noconfirm archlinux-keyring > /dev/null || exit
 
 echo "installing packages"
-curl -s "$pkgsfile" > $home_dir/tmp/pkgs.csv
-while IFS=, read -r key pkg comment; do
-    printf "%s " "$pkg"
-    case "$key" in
-        "" ) sudo pacman -S --noconfirm --needed "$pkg" > /dev/null || error "installing $pkg" ;;
-        "p" ) sudo pip install "$pkg" > /dev/null || error "installing $pkg" ;;
-    esac
-done < $home_dir/tmp/pkgs.csv
-echo ""
+curl -s "$pkgsfile" > $home_dir/tmp/pkgs.txt || exit
+# sudo pacman -S --noconfirm --needed - < $home_dir/tmp/pkgs.txt > /dev/null || exit
+sudo pacman -S --needed - < $home_dir/tmp/pkgs.txt
+
+echo "installing python packages"
+curl -s "$pypkgsfile" > $home_dir/tmp/pypkgs.txt || exit
+sudo python -m pip install --upgrade pip setuptools >/dev/null || exit
+sudo pip install -r $home_dir/tmp/pypkgs.txt >/dev/null || exit
 
 echo "enabling services"
 sudo systemctl enable ufw.service
 sudo ufw enable
+sudo usermod -a -G cups itseez
+sudo systemctl enable org.cups.cupsd.socket
+sudo systemctl start org.cups.cupsd.socket
 
 echo "cleaning up temporary files"
-rm $home_dir/tmp/pkgs.csv $home_dir/tmp/subl.gpg
+rm $home_dir/tmp/pkgs.txt $home_dir/tmp/pypkgs.txt $home_dir/tmp/subl.gpg
+
+printf "\n%s\n" "to configure the printer:"
+printf "%s\n" "sudo hp-setup -i 192.168.86.36"
+printf "%s\n" "lpoptions -d <printer_name>"
 
 printf "\n%s\n" "installation complete"
