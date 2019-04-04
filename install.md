@@ -105,7 +105,7 @@ options root=PARTUUID=xxxx rw
 
 ##### Printer/Scanner
 
-- `sudo hp-setup -i 192.168.86.36`
+- `hp-setup -i 192.168.86.36`
 - `lpoptions -d home_printer`
-- `scanimage --device "<uri>" --format=png --resolution 300 --mode=color > scan_01.png`
+- `scanimage --format=png --resolution 300 --mode=color > scan_01.png`
 - `lpr scan_01.png`
