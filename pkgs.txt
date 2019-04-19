@@ -36,7 +36,6 @@ rxvt-unicode
 nnn
 wl-clipboard
 grim
-network-manager-applet
 imv
 firefox
 chromium

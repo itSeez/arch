@@ -1,7 +1,7 @@
 ### Arch Installation
 
-- `ls /sys/firmware/efi/efivars`
-- `ping -c 3 archlinux.org`
+- `wifi-menu`
+- `ping -c 1 google.ca`
 - `timedatectl set-ntp true`
 
 ##### Setup Partitions
@@ -13,7 +13,7 @@
 |`g`    |`n`    |`n`    |
 |`n`    |`2`    |`3`    |
 |`1`    |`enter`|`enter`|
-|`enter`|`+96G` |`enter`|
+|`enter`|`+96G` |`+140G`|
 |`+1G`  |-      |`w`    |
 |`t`    |-      |-      |
 |`1`    |-      |-      |
@@ -34,7 +34,7 @@
 ##### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base base-devel intel-ucode dialog networkmanager zsh git`
+- `pacstrap /mnt base base-devel intel-ucode`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 
@@ -43,17 +43,15 @@
 - `passwd`
 - `ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime`
 - `hwclock --systohc`
-- `systemctl enable NetworkManager`
 - `nano /etc/locale.gen` (uncomment en_CA.UTF-8)
 - `locale-gen`
 - `nano /etc/locale.conf` and set `LANG=en_CA.UTF-8`
-- `nano /etc/hostname` and set `jbook`
+- `nano /etc/hostname` and set `jpc`
 - `nano /etc/hosts` and set:
 
 ```
-127.0.0.1    localhost
-::1          localhost
-127.0.1.1    jbook.localdomain  jbook
+127.0.0.1 localhost.localdomain jpc
+::1       localhost.localdomain jpc
 ```
 
 ##### Setup the Boot Loader
@@ -88,6 +86,7 @@ mkswap /.swapfile
 echo "/.swapfile none swap sw 0 0" | tee -a /etc/fstab
 ```
 
+- `pacman -S git zsh dialog wpa_supplicant wireless_tools`
 - `exit`
 - `umount -R /mnt`
 - `shutdown now`
@@ -103,7 +102,8 @@ echo "/.swapfile none swap sw 0 0" | tee -a /etc/fstab
 
 ##### System
 
-- `sudo echo "options i915 enable_psr=2" | tee -a /etc/modprobe.d/1915.conf`
+- `sudo systemctl enable systemd-networkd.service`
+- `sudo wifi-menu`
 - `sudo timedatectl set-ntp true`
 - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - `curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh > setup.sh`
