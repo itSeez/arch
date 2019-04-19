@@ -6,33 +6,31 @@
 
 ##### Setup Partitions
 
-- Create partitions: `fdisk /dev/sda`
+- Create partitions: `fdisk /dev/nvme0n1`
 
-|efi    |root   |home   |swap   |
-|:------|:------|:------|:------|
-|`g`    |`n`    |`n`    |`n`    |
-|`n`    |`2`    |`3`    |`4`    |
-|`1`    |`enter`|`enter`|`enter`|
-|`enter`|`+96G` |`+135G`|`enter`|
-|`+1G`  |-      |-      |`t`    |
-|`t`    |-      |-      |`4`    |
-|`1`    |-      |-      |`19`   |
-|-      |-      |-      |`w`    |
+|efi    |root   |home   |
+|:------|:------|:------|
+|`g`    |`n`    |`n`    |
+|`n`    |`2`    |`3`    |
+|`1`    |`enter`|`enter`|
+|`enter`|`+96G` |`enter`|
+|`+1G`  |-      |`w`    |
+|`t`    |-      |-      |
+|`1`    |-      |-      |
+|-      |-      |-      |
 
 ##### Format Partitions
 
-- `mkfs.vfat /dev/sda1`
-- `mkfs.ext4 /dev/sda2`
-- `mkfs.ext4 /dev/sda3`
-- `mkswap /dev/sda4`
+- `mkfs.vfat /dev/nvme0n1p1`
+- `mkfs.ext4 /dev/nvme0n1p2`
+- `mkfs.ext4 /dev/nvme0n1p3`
 
 ##### Mount Partitions
 
-- `mount /dev/sda2 /mnt`
+- `mount /dev/nvme0n1p2 /mnt`
 - `mkdir /mnt/boot /mnt/home`
-- `mount /dev/sda1 /mnt/boot`
-- `mount /dev/sda3 /mnt/home`
-- `swapon /dev/sda4`
+- `mount /dev/nvme0n1p1 /mnt/boot`
+- `mount /dev/nvme0n1p3 /mnt/home`
 
 ##### Install Arch
 
@@ -71,7 +69,7 @@ editor       no
 console-mode max
 ```
 
-- `blkid | grep /dev/sda2 > /boot/loader/entries/arch.conf`
+- `blkid | grep /dev/nvme0n1p2 > /boot/loader/entries/arch.conf`
 - `nano /boot/loader/entries/arch.conf`
 
 ```
@@ -80,6 +78,15 @@ linux   /vmlinuz-linux
 initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
 options root=PARTUUID=xxxx rw
+```
+
+##### Create swap file
+
+```
+fallocate -l 24G /.swapfile
+chmod 600 /.swapfile
+mkswap /.swapfile
+echo "/.swapfile none swap sw 0 0" | tee -a /etc/fstab
 ```
 
 - `exit`
@@ -97,6 +104,7 @@ options root=PARTUUID=xxxx rw
 
 ##### System
 
+- `sudo echo "options i915 enable_psr=2" | tee -a /etc/modprobe.d/1915.conf`
 - `sudo timedatectl set-ntp true`
 - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 - `curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh > setup.sh`

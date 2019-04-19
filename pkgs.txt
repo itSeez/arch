@@ -22,6 +22,7 @@ wget
 cups
 sane
 hplip
+fwupd
 noto-fonts
 arc-solid-gtk-theme
 papirus-icon-theme
