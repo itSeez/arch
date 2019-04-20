@@ -13,6 +13,7 @@ exfat-utils
 ntfs-3g
 libnotify
 hunspell-en_CA
+alsa-utils
 pulseaudio
 pulseaudio-alsa
 htop
@@ -30,9 +31,8 @@ xorg-server-xwayland
 sway
 waybar
 swaylock
-swayidle
-dmenu
-rxvt-unicode
+bemenu
+termite
 nnn
 wl-clipboard
 grim

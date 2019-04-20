@@ -41,8 +41,7 @@ sudo pacman -Syy --noconfirm archlinux-keyring > /dev/null || exit
 
 echo "installing packages"
 curl -s "$pkgsfile" > $hdir/tmp/pkgs.txt || exit
-# sudo pacman -S --noconfirm --needed - < $hdir/tmp/pkgs.txt > /dev/null || exit
-sudo pacman -S --needed - < $hdir/tmp/pkgs.txt
+sudo pacman -S --noconfirm --needed - < $hdir/tmp/pkgs.txt > /dev/null || exit
 
 echo "installing python packages"
 curl -s "$pypkgsfile" > $hdir/tmp/pypkgs.txt || exit
