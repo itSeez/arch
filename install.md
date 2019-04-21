@@ -48,7 +48,6 @@
 
 - `useradd -m -g wheel itseez`
 - `passwd itseez`
-- `nano /etc/sudoers`
 - `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
 
 ##### Done

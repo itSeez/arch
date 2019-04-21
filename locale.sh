@@ -11,6 +11,7 @@ main()
     hwclock --systohc
     sed -i "s/^#Color/Color/" /etc/pacman.conf
     sed -i "s/^#en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/" /etc/locale.gen
+    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
     locale-gen
     echo -e "$locale_str\n" >> /etc/locale.conf
     echo -e "jpc\n" >> /etc/hostname
