@@ -1,10 +1,10 @@
 ### Arch Installation
 
 - `wifi-menu`
-- `ping -c 1 google.ca`
+- `ping google.ca`
 - `timedatectl set-ntp true`
 
-##### Setup Partitions
+#### Setup Partitions
 
 - `fdisk /dev/nvme0n1`
 
@@ -18,39 +18,37 @@
 |`t`    |-      |-      |
 |`1`    |-      |-      |
 
-##### Format Partitions
+#### Format Partitions
 
 - `mkfs.vfat /dev/nvme0n1p1`
 - `mkfs.ext4 /dev/nvme0n1p2`
 - `mkfs.ext4 /dev/nvme0n1p3`
 
-##### Mount Partitions
+#### Mount Partitions
 
 - `mount /dev/nvme0n1p2 /mnt`
 - `mkdir /mnt/boot /mnt/home`
 - `mount /dev/nvme0n1p1 /mnt/boot`
 - `mount /dev/nvme0n1p3 /mnt/home`
 
-##### Install Arch
+#### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
 - `pacstrap /mnt base base-devel intel-ucode`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
+
+#### User Setup
+
 - `passwd`
-
-##### Configure Locale, the Boot Loader, and the swapfile
-
-- `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/locale.sh)"`
-- `nano /boot/loader/entries/arch.conf`
-
-##### User Setup
-
 - `useradd -m -g wheel itseez`
 - `passwd itseez`
+
+#### Configure locale, boot loader, swapfile, and install packages
+
 - `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
 
-##### Done
+#### Done
 
 - `exit`
 - `umount -R /mnt`
