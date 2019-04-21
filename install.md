@@ -8,7 +8,7 @@
 
 - `fdisk /dev/nvme0n1`
 
-|efi    |root   |home   |
+|esp    |root   |home   |
 |:------|:------|:------|
 |`g`    |`n`    |`n`    |
 |`n`    |`2`    |`3`    |
@@ -55,4 +55,4 @@
 
 - `exit`
 - `umount -R /mnt`
-- `reboot`
+- `shutdown now`
