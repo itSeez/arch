@@ -6,7 +6,6 @@ main()
     loader_str="default      arch\ntimeout      0\neditor       no\nconsole-mode max"
     arch_str="title   Arch Linux\nlinux   /vmlinuz-linux\ninitrd  /intel-ucode.img\ninitrd  /initramfs-linux.img\noptions root=PARTUUID="
     pkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pkgs.txt"
-    pypkgsfile="https://bitbucket.org/itSeez/arch/raw/master/pypkgs.txt"
     sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
     sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
 
@@ -34,23 +33,16 @@ main()
     mkswap /.swapfile >> /dev/null || exit
     echo "/.swapfile none swap sw 0 0" >> /etc/fstab
 
-    # add sublime text to pacman
+    echo "adding sublime text to pacman"
     curl -s "$sublkey" >> /tmp/subl.gpg || exit
     pacman-key --add /tmp/subl.gpg >> /dev/null || exit
     pacman-key --lsign-key 8A8F901A >> /dev/null || exit
     echo -e "$sublrepo" >> /etc/pacman.conf
-
-    echo "refreshing arch keyring"
     pacman -Syy --noconfirm archlinux-keyring >> /dev/null || exit
 
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
     pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null || exit
-
-    echo "installing python packages"
-    curl -s "$pypkgsfile" >> /tmp/pypkgs.txt || exit
-    python -m pip install --upgrade pip setuptools >> /dev/null || exit
-    pip install -r /tmp/pypkgs.txt >> /dev/null || exit
 
     echo "enabling services"
     systemctl enable NetworkManager.service

@@ -5,6 +5,10 @@ networkmanager
 wireless_tools
 python
 python-pip
+python-numpy
+python-scipy
+python-pyqt5
+python-matplotlib
 ufw
 clang
 cmake
