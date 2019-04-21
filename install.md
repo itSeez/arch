@@ -6,7 +6,7 @@
 
 ##### Setup Partitions
 
-- Create partitions: `fdisk /dev/nvme0n1`
+- `fdisk /dev/nvme0n1`
 
 |efi    |root   |home   |
 |:------|:------|:------|
@@ -34,57 +34,25 @@
 ##### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base base-devel intel-ucode git zsh`
+- `pacstrap /mnt base base-devel intel-ucode`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 - `passwd`
 
-##### Configure Locale
+##### Configure Locale, the Boot Loader, and the swapfile
 
-- `sh -c "$(curl -fsSL https://bitbucket.org/itSeez/arch/raw/master/locale.sh)"`
-
-##### Setup the Boot Loader
-
-- `bootctl install`
-- `nano /boot/loader/loader.conf`
-
-```
-default      arch
-timeout      0
-editor       no
-console-mode max
-```
-
-- `blkid | grep /dev/nvme0n1p2 > /boot/loader/entries/arch.conf`
+- `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/locale.sh)"`
 - `nano /boot/loader/entries/arch.conf`
 
-```
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /intel-ucode.img
-initrd  /initramfs-linux.img
-options root=PARTUUID=xxxx rw
-```
-
-##### Create swap file
-
-```
-fallocate -l 16G /.swapfile
-chmod 600 /.swapfile
-mkswap /.swapfile
-echo "/.swapfile none swap sw 0 0" | tee -a /etc/fstab
-```
-
-##### Setup
+##### User Setup
 
 - `useradd -m -g wheel itseez`
 - `passwd itseez`
 - `nano /etc/sudoers`
-- `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-- `sh -c "$(curl -fsSL https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
+- `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
 
 ##### Done
 
 - `exit`
 - `umount -R /mnt`
-- `shutdown now`
+- `reboot`

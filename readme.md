@@ -7,7 +7,7 @@ This repository contains notes and scripts that help with an installation of [Ar
 
 This is meant to be run on a fresh Arch environment. Here are some of the things included in this setup:
 
-- [Sway][sway]
+- [Gnome][gnome]
 - [oh-my-zsh][omz]
 - [C++ environment][cpp]
 - [Python environment][python]
@@ -19,7 +19,7 @@ _**Note**_: This setup is specific to a [Dell XPS 9380][dell] or equivalent.
 [arch]:https://www.archlinux.org/
 [archinstall]:./install.md
 [archsetup]:./setup.sh
-[sway]:https://swaywm.org/
+[gnome]:https://www.gnome.org
 [omz]:https://ohmyz.sh/
 [cpp]:https://en.wikipedia.org/wiki/C%2B%2B
 [python]:https://www.python.org/
