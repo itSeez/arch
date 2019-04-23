@@ -44,7 +44,7 @@
 - `useradd -m -g wheel itseez`
 - `passwd itseez`
 
-#### Configure locale, boot loader, swapfile, and install packages
+#### Configure locale, boot loader, and install packages
 
 - `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
 

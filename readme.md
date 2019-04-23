@@ -5,7 +5,7 @@ This repository contains notes and scripts that help with an installation of [Ar
 - [Arch installation][archinstall]
 - [Arch setup][archsetup]
 
-This is meant to be run on a fresh Arch environment. Here are some of the things included in this setup:
+This is meant to run during an Arch installation. Here are some of the things included in this setup:
 
 - [Gnome][gnome]
 - [oh-my-zsh][omz]

@@ -27,16 +27,10 @@ main()
     blkid | grep /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
     echo "remember to edit /boot/loader/entries/arch.conf"
 
-    echo "configuring the swapfile"
-    fallocate -l 16G /.swapfile
-    chmod 600 /.swapfile
-    mkswap /.swapfile >> /dev/null || exit
-    echo "/.swapfile none swap sw 0 0" >> /etc/fstab
-
     echo "adding sublime text to pacman"
     curl -s "$sublkey" >> /tmp/subl.gpg || exit
-    pacman-key --add /tmp/subl.gpg >> /dev/null || exit
-    pacman-key --lsign-key 8A8F901A >> /dev/null || exit
+    pacman-key --add /tmp/subl.gpg >> /dev/null 2>&1 || exit
+    pacman-key --lsign-key 8A8F901A >> /dev/null 2>&1 || exit
     echo -e "$sublrepo" >> /etc/pacman.conf
     pacman -Syy --noconfirm archlinux-keyring >> /dev/null || exit
 
