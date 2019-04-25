@@ -29,15 +29,15 @@ gnome-session
 gnome-shell
 gdm
 gnome-control-center
+gnome-tweaks
 gnome-terminal
-gnome-calculator
-gnome-characters
 gnome-disk-utility
+gnome-system-monitor
 gnome-font-viewer
 gnome-keyring
 gnome-screenshot
-gnome-system-monitor
-gnome-tweaks
+gnome-calculator
+gnome-characters
 eog
 firefox
 chromium
@@ -45,3 +45,4 @@ sublime-text
 cryptsetup
 nautilus
 simple-scan
+evince
