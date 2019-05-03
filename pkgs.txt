@@ -5,7 +5,6 @@ networkmanager
 clang
 cmake
 doxygen
-graphviz
 python
 python-pip
 python-numpy
@@ -42,7 +41,6 @@ eog
 firefox
 chromium
 sublime-text
-cryptsetup
 nautilus
 simple-scan
 evince
