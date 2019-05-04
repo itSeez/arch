@@ -46,7 +46,7 @@
 
 #### Configure locale, boot loader, and install packages
 
-- `sh -c "$(curl https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
+- `sh -c "$(curl -s https://bitbucket.org/itSeez/arch/raw/master/setup.sh)"`
 
 #### Done
 

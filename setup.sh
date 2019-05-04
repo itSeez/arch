@@ -15,7 +15,7 @@ main()
     sed -i "s/^#Color/Color/" /etc/pacman.conf
     sed -i "s/^#en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/" /etc/locale.gen
     sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
-    locale-gen >> /dev/null || exit
+    locale-gen >> /dev/null 2>&1 || exit
     echo -e "$locale_str\n" >> /etc/locale.conf
     echo -e "jpc\n" >> /etc/hostname
     echo -e "$hosts_str\n" >> /etc/hosts
@@ -25,7 +25,7 @@ main()
     echo -e "$loader_str\n" > /boot/loader/loader.conf
     echo -e "$arch_str\n" >> /boot/loader/entries/arch.conf
     blkid | grep /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
-    echo "\033[0;33m\nremember to edit /boot/loader/entries/arch.conf \n\033[0m"
+    echo -e "\033[0;33m\nremember to edit /boot/loader/entries/arch.conf \n\033[0m"
 
     echo "adding sublime text to pacman"
     curl -s "$sublkey" >> /tmp/subl.gpg || exit
@@ -36,14 +36,14 @@ main()
 
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
-    pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null || exit
+    pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null 2>&1 || exit
 
     echo "enabling services"
-    systemctl enable NetworkManager.service >> /dev/null || exit
-    systemctl enable org.cups.cupsd.socket >> /dev/null || exit
-    systemctl enable gdm.service >> /dev/null || exit
-    systemctl enable ufw.service >> /dev/null || exit
-    ufw enable >> /dev/null || exit
+    systemctl enable NetworkManager.service >> /dev/null 2>&1 || exit
+    systemctl enable org.cups.cupsd.socket >> /dev/null 2>&1 || exit
+    systemctl enable gdm.service >> /dev/null 2>&1 || exit
+    systemctl enable ufw.service >> /dev/null 2>&1 || exit
+    ufw enable >> /dev/null 2>&1 || exit
 
     echo -e "\ndone\n"
 }
