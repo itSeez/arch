@@ -21,11 +21,11 @@ main()
     echo -e "$hosts_str\n" >> /etc/hosts
 
     echo "configuring the boot loader"
-    bootctl install >> /dev/null || exit
+    bootctl install >> /dev/null 2>&1 || exit
     echo -e "$loader_str\n" > /boot/loader/loader.conf
     echo -e "$arch_str\n" >> /boot/loader/entries/arch.conf
     blkid | grep /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
-    echo "remember to edit /boot/loader/entries/arch.conf"
+    echo "\033[0;33m\nremember to edit /boot/loader/entries/arch.conf \n\033[0m"
 
     echo "adding sublime text to pacman"
     curl -s "$sublkey" >> /tmp/subl.gpg || exit
