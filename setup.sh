@@ -32,18 +32,18 @@ main()
     pacman-key --add /tmp/subl.gpg >> /dev/null 2>&1 || exit
     pacman-key --lsign-key 8A8F901A >> /dev/null 2>&1 || exit
     echo -e "$sublrepo" >> /etc/pacman.conf
-    pacman -Syy --noconfirm archlinux-keyring >> /dev/null || exit
+    pacman -Syy --noconfirm archlinux-keyring >> /dev/null 2>&1 || exit
 
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
     pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null || exit
 
     echo "enabling services"
-    systemctl enable NetworkManager.service
-    systemctl enable org.cups.cupsd.socket
-    systemctl enable gdm.service
-    systemctl enable ufw.service
-    ufw enable
+    systemctl enable NetworkManager.service >> /dev/null || exit
+    systemctl enable org.cups.cupsd.socket >> /dev/null || exit
+    systemctl enable gdm.service >> /dev/null || exit
+    systemctl enable ufw.service >> /dev/null || exit
+    ufw enable >> /dev/null || exit
 
     echo -e "\ndone\n"
 }
