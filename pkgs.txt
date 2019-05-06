@@ -38,6 +38,7 @@ gnome-keyring
 gnome-screenshot
 gnome-calculator
 gnome-characters
+wl-clipboard
 eog
 firefox
 chromium
