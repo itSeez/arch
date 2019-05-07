@@ -39,6 +39,7 @@ gnome-screenshot
 gnome-calculator
 gnome-characters
 wl-clipboard
+cryptsetup
 eog
 firefox
 chromium
