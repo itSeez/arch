@@ -3,15 +3,8 @@ zsh
 mesa
 vulkan-intel
 networkmanager
-clang
-cmake
-doxygen
 python
 python-pip
-python-numpy
-python-scipy
-python-pyqt5
-python-matplotlib
 exfat-utils
 ntfs-3g
 hunspell-en_CA
