@@ -5,6 +5,9 @@ vulkan-intel
 networkmanager
 python
 python-pip
+ufw
+cryptsetup
+fwupd
 exfat-utils
 ntfs-3g
 hunspell-en_CA
@@ -13,8 +16,6 @@ unrar
 wget
 cups
 hplip
-fwupd
-ufw
 noto-fonts
 adapta-gtk-theme
 papirus-icon-theme
@@ -32,7 +33,6 @@ gnome-screenshot
 gnome-calculator
 gnome-characters
 wl-clipboard
-cryptsetup
 eog
 firefox
 chromium
