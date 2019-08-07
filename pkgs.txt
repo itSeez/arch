@@ -1,5 +1,4 @@
 git
-zsh
 mesa
 vulkan-intel
 networkmanager
