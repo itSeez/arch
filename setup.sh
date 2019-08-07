@@ -29,9 +29,8 @@ main()
     bootctl install >> /dev/null 2>&1 || exit
     echo -e "$loader_str\n" > /boot/loader/loader.conf
     echo -e "$arch_str\n" >> /boot/loader/entries/arch.conf
-    blkid | grep /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
-    # TODO: complete the PARTUUID setup automatically
-    echo -e "\033[0;33m\nremember to edit /boot/loader/entries/arch.conf \n\033[0m"
+    partuuid=$(blkid | grep /dev/nvme0n1p2 | sed 's/^.*PARTUUID="//' | sed 's/\"//')
+    echo -e $partuuid" rw\n" >> /boot/loader/entries/arch.conf
 
     echo "adding sublime text to pacman"
     curl -s "$sublkey" >> /tmp/subl.gpg || exit
