@@ -18,8 +18,6 @@ hplip
 noto-fonts
 adapta-gtk-theme
 papirus-icon-theme
-gnome-session
-gnome-shell
 gdm
 gnome-control-center
 gnome-tweaks
@@ -31,11 +29,11 @@ gnome-keyring
 gnome-screenshot
 gnome-calculator
 gnome-characters
-wl-clipboard
 eog
+wl-clipboard
+code
 firefox
 chromium
-sublime-text
 nautilus
-simple-scan
 evince
+simple-scan

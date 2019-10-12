@@ -6,8 +6,6 @@ main()
     loader_str="default      arch\ntimeout      0\neditor       no\nconsole-mode max"
     arch_str="title   Arch Linux\nlinux   /vmlinuz-linux\ninitrd  /intel-ucode.img\ninitrd  /initramfs-linux.img\noptions root=PARTUUID="
     pkgsfile="https://raw.githubusercontent.com/itSeez/arch/master/pkgs.txt"
-    sublkey="https://download.sublimetext.com/sublimehq-pub.gpg"
-    sublrepo="\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64"
 
     echo "configuring locale"
     ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
@@ -32,15 +30,9 @@ main()
     partuuid=$(blkid | grep /dev/nvme0n1p2 | sed 's/^.*PARTUUID="//' | sed 's/\"//')
     echo -e $partuuid" rw\n" >> /boot/loader/entries/arch.conf
 
-    echo "adding sublime text to pacman"
-    curl -s "$sublkey" >> /tmp/subl.gpg || exit
-    pacman-key --add /tmp/subl.gpg >> /dev/null 2>&1 || exit
-    pacman-key --lsign-key 8A8F901A >> /dev/null 2>&1 || exit
-    echo -e "$sublrepo" >> /etc/pacman.conf
-    pacman -Syy --noconfirm archlinux-keyring >> /dev/null 2>&1 || exit
-
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
+    pacman -Syy --noconfirm archlinux-keyring >> /dev/null 2>&1 || exit
     pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null 2>&1 || exit
 
     echo "enabling services"

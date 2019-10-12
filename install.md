@@ -34,7 +34,7 @@
 #### Install Arch
 
 - `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base base-devel intel-ucode`
+- `pacstrap /mnt base base-devel intel-ucode linux`
 - `genfstab -U /mnt > /mnt/etc/fstab`
 - `arch-chroot /mnt`
 
