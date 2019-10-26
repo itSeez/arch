@@ -6,6 +6,7 @@ python
 python-pip
 ufw
 cryptsetup
+usbutils
 fwupd
 exfat-utils
 ntfs-3g
@@ -31,6 +32,7 @@ gnome-calculator
 gnome-characters
 eog
 wl-clipboard
+nano
 code
 firefox
 chromium
