@@ -3,43 +3,15 @@
 - `wifi-menu`
 - `ping google.ca`
 - `timedatectl set-ntp true`
-
-#### Setup Partitions
-
-- `fdisk /dev/nvme0n1`
-
-|esp    |root   |home   |
-|:------|:------|:------|
-|`g`    |`n`    |`n`    |
-|`n`    |`2`    |`3`    |
-|`1`    |`enter`|`enter`|
-|`enter`|`+96G` |`+140G`|
-|`+1G`  |-      |`w`    |
-|`t`    |-      |-      |
-|`1`    |-      |-      |
-
-#### Format Partitions
-
-- `mkfs.vfat /dev/nvme0n1p1`
-- `mkfs.ext4 /dev/nvme0n1p2`
-- `mkfs.ext4 /dev/nvme0n1p3`
-
-#### Mount Partitions
-
-- `mount /dev/nvme0n1p2 /mnt`
-- `mkdir /mnt/boot /mnt/home`
-- `mount /dev/nvme0n1p1 /mnt/boot`
-- `mount /dev/nvme0n1p3 /mnt/home`
+- `nano /etc/pacman.d/mirrorlist`
 
 #### Install Arch
 
-- `nano /etc/pacman.d/mirrorlist`
-- `pacstrap /mnt base base-devel intel-ucode linux`
-- `genfstab -U /mnt > /mnt/etc/fstab`
-- `arch-chroot /mnt`
+- `sh -c "$(curl -s https://raw.githubusercontent.com/itSeez/arch/master/install.sh)"`
 
 #### User Setup
 
+- `arch-chroot /mnt`
 - `passwd`
 - `useradd -m -g wheel itseez`
 - `passwd itseez`
