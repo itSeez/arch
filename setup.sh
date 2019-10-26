@@ -38,6 +38,7 @@ main()
     echo "enabling services"
     systemctl enable NetworkManager.service >> /dev/null 2>&1 || exit
     systemctl enable org.cups.cupsd.socket >> /dev/null 2>&1 || exit
+    systemctl enable bluetooth.service >> /dev/null 2>&1 || exit
     systemctl enable gdm.service >> /dev/null 2>&1 || exit
     systemctl enable ufw.service >> /dev/null 2>&1 || exit
     ufw enable >> /dev/null 2>&1 || exit

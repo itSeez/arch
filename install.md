@@ -1,12 +1,24 @@
 ### Arch Installation
 
 - `wifi-menu`
-- `ping google.ca`
-- `timedatectl set-ntp true`
-- `nano /etc/pacman.d/mirrorlist`
+
+#### Setup Partitions
+
+- `fdisk /dev/nvme0n1`
+
+|esp    |root   |home   |
+|:------|:------|:------|
+|`g`    |`n`    |`n`    |
+|`n`    |`2`    |`3`    |
+|`1`    |`enter`|`enter`|
+|`enter`|`+96G` |`+140G`|
+|`+1G`  |-      |`w`    |
+|`t`    |-      |-      |
+|`1`    |-      |-      |
 
 #### Install Arch
 
+- `nano /etc/pacman.d/mirrorlist`
 - `sh -c "$(curl -s https://raw.githubusercontent.com/itSeez/arch/master/install.sh)"`
 
 #### User Setup
