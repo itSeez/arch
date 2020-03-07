@@ -5,7 +5,6 @@ networkmanager
 python
 python-pip
 ufw
-cryptsetup
 usbutils
 fwupd
 exfat-utils
