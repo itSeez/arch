@@ -13,8 +13,6 @@ hunspell-en_CA
 htop
 unrar
 wget
-cups
-hplip
 noto-fonts
 adapta-gtk-theme
 papirus-icon-theme
@@ -37,4 +35,3 @@ firefox
 chromium
 nautilus
 evince
-simple-scan
