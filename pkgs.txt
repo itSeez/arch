@@ -14,6 +14,9 @@ htop
 unrar
 wget
 noto-fonts
+noto-fonts-extra
+noto-fonts-emoji
+ttf-jetbrains-mono
 adapta-gtk-theme
 papirus-icon-theme
 gdm
