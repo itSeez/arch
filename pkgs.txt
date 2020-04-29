@@ -38,3 +38,4 @@ firefox
 chromium
 nautilus
 evince
+chrome-gnome-shell
