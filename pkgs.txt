@@ -39,3 +39,4 @@ chromium
 nautilus
 evince
 chrome-gnome-shell
+inkscape
