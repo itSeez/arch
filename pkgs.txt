@@ -4,6 +4,7 @@ vulkan-intel
 networkmanager
 python
 python-pip
+python-virtualenv
 ufw
 usbutils
 fwupd
