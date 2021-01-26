@@ -32,7 +32,7 @@ main()
 
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
-    pacman -Syy --noconfirm archlinux-keyring >> /dev/null 2>&1 || exit
+    pacman -Syyu --noconfirm archlinux-keyring >> /dev/null 2>&1 || exit
     pacman -S --noconfirm --needed - < /tmp/pkgs.txt >> /dev/null 2>&1 || exit
 
     echo "enabling services"

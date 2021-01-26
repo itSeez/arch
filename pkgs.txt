@@ -1,6 +1,7 @@
 git
 mesa
 vulkan-intel
+vulkan-mesa-layers
 networkmanager
 python
 python-pip
@@ -12,10 +13,8 @@ exfat-utils
 ntfs-3g
 hunspell-en_CA
 htop
-unrar
 wget
 noto-fonts
-noto-fonts-extra
 noto-fonts-emoji
 ttf-jetbrains-mono
 adapta-gtk-theme
@@ -31,6 +30,7 @@ gnome-keyring
 gnome-screenshot
 gnome-calculator
 gnome-characters
+gnome-power-manager
 eog
 wl-clipboard
 nano

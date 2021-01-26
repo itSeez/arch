@@ -51,4 +51,4 @@ _**Note**_: This setup is specific to a [Dell XPS 9380][dell] or equivalent.
 [arch]:https://www.archlinux.org/
 [gnome]:https://www.gnome.org
 [packages]:./pkgs.txt
-[dell]:https://wiki.archlinux.org/index.php/Dell_XPS_13_(9370)
+[dell]:https://wiki.archlinux.org/index.php/Dell_XPS_13_(9380)
