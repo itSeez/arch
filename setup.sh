@@ -4,8 +4,9 @@ main()
     locale_str="LANG=en_CA.UTF-8\nLC_ADDRESS=en_CA.UTF-8\nLC_IDENTIFICATION=en_CA.UTF-8\nLC_MEASUREMENT=en_CA.UTF-8\nLC_MONETARY=en_CA.UTF-8\nLC_NAME=en_CA.UTF-8\nLC_NUMERIC=en_CA.UTF-8\nLC_PAPER=en_CA.UTF-8\nLC_TELEPHONE=en_CA.UTF-8\nLC_TIME=en_CA.UTF-8"
     hosts_str="\n127.0.0.1 localhost\n::1       localhost\n127.0.1.1 jpc.localdomain jpc"
     loader_str="default      arch\ntimeout      0\neditor       no\nconsole-mode max"
-    arch_str="title   Arch Linux\nlinux   /vmlinuz-linux\ninitrd  /intel-ucode.img\ninitrd  /initramfs-linux.img\noptions root=PARTUUID="
+    arch_str="title   Arch Linux\nlinux   /vmlinuz-linux\ninitrd  /intel-ucode.img\ninitrd  /initramfs-linux.img\noptions i915.enable_psr=0\noptions root=PARTUUID="
     pkgsfile="https://raw.githubusercontent.com/itSeez/arch/master/pkgs.txt"
+    bootctl_update_hook="[Trigger]\nType = Package\nOperation = Upgrade\nTarget = systemd\n\n[Action]\nDescription = Updating systemd-boot\nWhen = PostTransaction\nExec = /usr/bin/bootctl update"
 
     echo "configuring locale"
     ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
@@ -29,6 +30,9 @@ main()
     echo -en "$arch_str" >> /boot/loader/entries/arch.conf
     partuuid=$(blkid | grep /dev/nvme0n1p2 | sed 's/^.*PARTUUID="//' | sed 's/\"//')
     echo -en $partuuid" rw\n" >> /boot/loader/entries/arch.conf
+    # make sure that bootctl will be updated when systemd is updated
+    mkdir -p /etc/pacman.d/hooks
+    echo -e $bootctl_update_hook > /etc/pacman.d/hooks/100-systemd-boot.hook
 
     echo "installing packages"
     curl -s "$pkgsfile" >> /tmp/pkgs.txt || exit
