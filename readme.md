@@ -8,7 +8,7 @@ _**Note**_: This setup is specific to a [Dell XPS 9380][dell] or equivalent.
 
 ### Arch Installation
 
-- `wifi-menu`
+- `iwctl`
 
 #### Setup Partitions
 

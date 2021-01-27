@@ -26,7 +26,7 @@ main()
     # setup systemd as the boot manager
     bootctl install >> /dev/null 2>&1 || exit
     echo -e "$loader_str\n" > /boot/loader/loader.conf
-    echo -en "$arch_str\n" >> /boot/loader/entries/arch.conf
+    echo -en "$arch_str" >> /boot/loader/entries/arch.conf
     partuuid=$(blkid | grep /dev/nvme0n1p2 | sed 's/^.*PARTUUID="//' | sed 's/\"//')
     echo -en $partuuid" rw\n" >> /boot/loader/entries/arch.conf
 
