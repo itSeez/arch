@@ -14,15 +14,15 @@ _**Note**_: This setup is specific to a [Dell XPS 9380][dell] or equivalent.
 
 - `fdisk /dev/nvme0n1`
 
-|esp    |root   |home   |
-|:------|:------|:------|
-|`g`    |`n`    |`n`    |
-|`n`    |`2`    |`3`    |
-|`1`    |`enter`|`enter`|
-|`enter`|`+96G` |`+140G`|
-|`+1G`  |-      |`w`    |
-|`t`    |-      |-      |
-|`1`    |-      |-      |
+|esp    |root   |
+|:------|:------|
+|`g`    |`n`    |
+|`n`    |`2`    |
+|`1`    |`enter`|
+|`enter`|`enter`|
+|`+1G`  |`w`    |
+|`t`    |-      |
+|`1`    |-      |
 
 #### Install Arch
 
