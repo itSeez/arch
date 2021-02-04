@@ -47,6 +47,8 @@ main()
     systemctl enable docker.service >> /dev/null 2>&1 || exit
     ufw enable >> /dev/null 2>&1 || exit
 
+    usermod -a -G docker itseez
+
     echo -e "\ndone\n"
 }
 
