@@ -44,6 +44,7 @@ main()
     systemctl enable bluetooth.service >> /dev/null 2>&1 || exit
     systemctl enable gdm.service >> /dev/null 2>&1 || exit
     systemctl enable ufw.service >> /dev/null 2>&1 || exit
+    systemctl enable docker.service >> /dev/null 2>&1 || exit
     ufw enable >> /dev/null 2>&1 || exit
 
     echo -e "\ndone\n"

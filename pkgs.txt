@@ -40,3 +40,4 @@ chromium
 nautilus
 evince
 inkscape
+docker
