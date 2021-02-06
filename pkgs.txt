@@ -41,3 +41,6 @@ nautilus
 evince
 inkscape
 docker
+vlc
+glu
+qt5-xcb-private-headers
